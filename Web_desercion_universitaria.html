@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La experiencia de la deserción universitaria — Microproyecto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#5A4231; --pine2:#6E513C; --sand:#F1E7DA; --paper:#FBF6EF;
+    --ink:#3D2C20; --amber:#B07A4A; --sage:#A98E78; --line:#E6D8C8; --body:#5C4A3C;
+    --display:'Fraunces',Georgia,serif;
+    --text:'Inter',-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--text);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.6}
+  .bar{height:6px;background:var(--amber)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-family:var(--text);font-weight:600;font-size:13px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--amber)}
+  h2{font-family:var(--display);font-weight:600;font-size:clamp(26px,4.5vw,40px);
+    line-height:1.12;color:var(--ink);margin:12px 0 20px;letter-spacing:-.3px}
+  p{font-size:clamp(15px,2vw,18px);color:var(--body);max-width:62ch}
+  section{padding:clamp(48px,8vw,84px) 0}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+  /* hero */
+  .hero{background:var(--pine);color:#fff;position:relative;overflow:hidden;
+    padding:clamp(70px,12vw,130px) 0 clamp(56px,9vw,96px)}
+  .hero .quotemark{position:absolute;top:-30px;right:2%;font-family:var(--display);
+    font-weight:600;font-size:clamp(220px,40vw,440px);color:rgba(176,122,74,.16);line-height:1;pointer-events:none}
+  .hero .eyebrow{color:var(--amber)}
+  .hero .kicker{font-family:var(--text);font-size:clamp(14px,2vw,17px);color:#D8C3AC;margin:10px 0 26px;font-weight:500}
+  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(28px,5.4vw,52px);
+    line-height:1.16;letter-spacing:-.4px;max-width:18ch;position:relative}
+  .hero h1 em{font-style:italic;color:var(--amber)}
+  .hero .sub{margin-top:24px;color:#E4D5C2;font-size:clamp(15px,2vw,18px);max-width:52ch}
+  .scrollcue{margin-top:40px;display:inline-flex;align-items:center;gap:10px;color:#D8C3AC;font-size:13px;
+    letter-spacing:1px;text-transform:uppercase;font-weight:600}
+  .scrollcue span{width:30px;height:30px;border:1.5px solid rgba(255,255,255,.3);border-radius:50%;
+    display:flex;align-items:center;justify-content:center}
+
+  /* alternating bg */
+  .sand{background:var(--sand)}
+  .stat-inline{color:var(--ink);font-weight:600}
+  .stat-inline b{font-family:var(--display);color:var(--amber);font-size:1.15em}
+  .video-embed{position:relative;display:block;width:100%;max-width:760px;margin:34px auto 0;aspect-ratio:16/9;border-radius:16px;overflow:hidden;box-shadow:0 18px 44px rgba(61,44,32,.20);border:1px solid var(--line);text-decoration:none;background:#2b1d14}
+  .video-embed img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82;transition:opacity .3s,transform .4s}
+  .video-embed:hover img{opacity:.62;transform:scale(1.04)}
+  .video-embed .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .25s}
+  .video-embed:hover .play{transform:translate(-50%,-50%) scale(1.1)}
+  .video-embed .play::after{content:"";margin-left:6px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #fff}
+  .video-embed .vlabel{position:absolute;left:0;right:0;bottom:0;padding:16px 20px;background:linear-gradient(transparent,rgba(43,29,20,.85));color:#fff;font-family:var(--display);font-weight:600;font-size:clamp(15px,2vw,19px);display:flex;align-items:center;gap:10px}
+  .video-embed .yt{margin-left:auto;font-family:var(--text);font-weight:600;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--amber);background:#fff;padding:5px 11px;border-radius:6px}
+  .video-cap{text-align:center;font-size:14px;color:var(--sage);margin-top:14px;font-style:italic}
+
+  /* objetivo general block */
+  .ogeneral{background:var(--pine);color:#fff;border-radius:18px;padding:clamp(24px,4vw,36px);margin-top:8px}
+  .ogeneral .lbl{font-family:var(--text);font-weight:600;font-size:12px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+  .ogeneral p{color:#F2E8DC;font-size:clamp(16px,2.2vw,20px);max-width:60ch}
+  .especificos{list-style:none;margin-top:28px;display:grid;gap:14px}
+  .especificos li{display:flex;gap:16px;background:var(--paper);border:1px solid var(--line);
+    border-radius:14px;padding:18px 20px;align-items:flex-start}
+  .especificos .n{font-family:var(--display);font-weight:600;font-size:22px;color:var(--amber);flex:none;line-height:1.1}
+  .especificos p{font-size:clamp(14px,1.9vw,17px);color:var(--ink)}
+
+  /* cards */
+  .cards{display:grid;gap:18px;margin-top:8px}
+  .cards.two{grid-template-columns:1fr 1fr}
+  .cards.three{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:720px){.cards.two,.cards.three{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .sand .card{background:#fff}
+  .card h3{font-family:var(--display);font-weight:600;font-size:clamp(18px,2.4vw,22px);color:var(--ink);margin-bottom:8px}
+  .card p{font-size:clamp(14px,1.8vw,16px);color:var(--body)}
+  .card .num{font-family:var(--display);font-weight:600;color:var(--amber);font-size:14px;
+    letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;display:block}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{background:var(--sand);border:1px solid var(--line);border-radius:999px;
+    padding:6px 13px;font-size:13px;color:var(--ink);font-weight:500}
+  .sand .chip{background:var(--sand)}
+
+  /* metodo highlight */
+  .metodo-name{font-family:var(--display);font-weight:600;font-size:clamp(34px,6vw,60px);
+    color:var(--pine);letter-spacing:-.5px;margin:6px 0 18px;line-height:1}
+
+  /* equipo */
+  .team{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
+  @media(min-width:760px){.team{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:460px){.team{grid-template-columns:1fr}}
+  .member{display:flex;align-items:center;gap:14px;background:var(--paper);
+    border:1px solid var(--line);border-radius:14px;padding:16px}
+  .avatar{width:48px;height:48px;border-radius:50%;background:var(--pine);color:#fff;flex:none;
+    display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;font-size:17px}
+  .member .nm{font-weight:600;font-size:15px;color:var(--ink);line-height:1.25}
+  .member .pg{font-size:13px;color:var(--sage);margin-top:2px}
+
+  /* footer */
+  footer{background:var(--pine);color:#E4D5C2;padding:clamp(40px,7vw,64px) 0;text-align:center}
+  footer .ftitle{font-family:var(--display);font-weight:500;font-size:clamp(18px,2.6vw,24px);color:#fff;max-width:30ch;margin:0 auto 16px}
+  footer .meta{font-size:14px;color:#D8C3AC;line-height:1.9}
+  footer .meta strong{color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+
+<header class="hero">
+  <div class="quotemark" aria-hidden="true">“</div>
+  <div class="wrap">
+    <div class="eyebrow">Microproyecto · Investigación cualitativa</div>
+    <div class="kicker">La experiencia de la deserción universitaria en estudiantes de primer semestre de Psicología</div>
+    <h1>¿Cómo <em>experimentan y significan</em> la deserción quienes la viven al comenzar la universidad?</h1>
+    <p class="sub">Una investigación que va más allá de las cifras para escuchar la voz de los estudiantes de primer semestre de Psicología de la Universidad Católica Luis Amigó.</p>
+    <a class="scrollcue" href="#partida"><span>↓</span> Conocé el proyecto</a>
+  </div>
+</header>
+
+<section id="partida" class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">El punto de partida</div>
+    <h2>Detrás de cada cifra, hay una historia</h2>
+    <p>Cada año, muchos jóvenes ingresan a la universidad con grandes expectativas, pero un número importante abandona durante el primer semestre. <span class="stat-inline">En Colombia, cerca del <b>22%</b> deserta en el primer año.</span></p>
+    <p style="margin-top:18px">La deserción casi siempre se estudia con estadísticas, que nos dicen <em>cuántos</em> abandonan, pero no <em>qué</em> viven. Nosotros decidimos mirarla de otra forma: desde la experiencia vivida y significada por cada estudiante. Por eso delimitamos el estudio a un programa concreto —Psicología—, en una universidad privada, y bajo un método que busca comprender lo que las personas sienten.</p>
+    <a class="video-embed" href="https://youtu.be/Uq-HKINGmxk" target="_blank" rel="noopener" title="Ver en YouTube: video de socialización del microproyecto">
+      <img src="https://img.youtube.com/vi/Uq-HKINGmxk/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/Uq-HKINGmxk/hqdefault.jpg'" alt="Miniatura del video de socialización del microproyecto">
+      <span class="play" aria-hidden="true"></span>
+      <span class="vlabel">Video de socialización del microproyecto<span class="yt">YouTube</span></span>
+    </a>
+    <p class="video-cap">Hacé clic en la imagen para ver el video en YouTube</p>
+  </div>
+</section>
+
+<section class="sand reveal">
+  <div class="wrap">
+    <div class="eyebrow">La pregunta</div>
+    <h2>Lo que mueve nuestra investigación</h2>
+    <div class="ogeneral">
+      <div class="lbl">Pregunta de investigación</div>
+      <p>¿Cómo experimentan y significan la deserción universitaria las y los estudiantes de primer semestre de Psicología de la Universidad Católica Luis Amigó?</p>
+    </div>
+    <a class="video-embed" href="https://youtu.be/CkGxt6B8RKU" target="_blank" rel="noopener" title="Ver en YouTube: video sobre la pregunta de investigación">
+      <img src="https://img.youtube.com/vi/CkGxt6B8RKU/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/CkGxt6B8RKU/hqdefault.jpg'" alt="Miniatura del video sobre la pregunta de investigación">
+      <span class="play" aria-hidden="true"></span>
+      <span class="vlabel">Video sobre la pregunta de investigación<span class="yt">YouTube</span></span>
+    </a>
+    <p class="video-cap">Hacé clic en la imagen para ver el video en YouTube</p>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Qué buscamos</div>
+    <h2>Nuestros objetivos</h2>
+    <div class="ogeneral">
+      <div class="lbl">Objetivo general</div>
+      <p>Comprender los significados y experiencias asociados a la deserción universitaria en estudiantes de primer semestre de Psicología de la Universidad Católica Luis Amigó, a partir de las narrativas que elaboran sobre su proceso de abandono académico.</p>
+    </div>
+    <ol class="especificos">
+      <li><span class="n">1</span><p>Explorar las narrativas y experiencias vividas por las y los estudiantes en torno a su decisión de abandonar la universidad.</p></li>
+      <li><span class="n">2</span><p>Identificar las situaciones y el contexto que rodearon e influyeron en la toma de la decisión de desertar.</p></li>
+      <li><span class="n">3</span><p>Comprender las motivaciones y los significados que atribuyen a su experiencia de deserción universitaria.</p></li>
+    </ol>
+    <a class="video-embed" href="https://youtu.be/hlF4OjZT3Zc" target="_blank" rel="noopener" title="Ver en YouTube: video sobre los objetivos de la investigación">
+      <img src="https://img.youtube.com/vi/hlF4OjZT3Zc/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/hlF4OjZT3Zc/hqdefault.jpg'" alt="Miniatura del video sobre los objetivos de la investigación">
+      <span class="play" aria-hidden="true"></span>
+      <span class="vlabel">Video sobre los objetivos de la investigación<span class="yt">YouTube</span></span>
+    </a>
+    <p class="video-cap">Hacé clic en la imagen para ver el video en YouTube</p>
+  </div>
+</section>
+
+<section class="sand reveal">
+  <div class="wrap">
+    <div class="eyebrow">Cómo lo investigamos</div>
+    <h2>El método</h2>
+    <div class="metodo-name">Fenomenología</div>
+    <p>Elegimos este método porque no busca medir cuántos estudiantes abandonan, sino comprender cómo viven, perciben e interpretan esa experiencia desde su propia realidad. Es un enfoque cualitativo que pone en el centro la voz de quienes vivieron la deserción.</p>
+    <a class="video-embed" href="https://youtu.be/CRJQj16fk-g" target="_blank" rel="noopener" title="Ver en YouTube: video sobre el método de la investigación">
+      <img src="https://img.youtube.com/vi/CRJQj16fk-g/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/CRJQj16fk-g/hqdefault.jpg'" alt="Miniatura del video sobre el método de la investigación">
+      <span class="play" aria-hidden="true"></span>
+      <span class="vlabel">Video sobre el método de la investigación<span class="yt">YouTube</span></span>
+    </a>
+    <p class="video-cap">Hacé clic en la imagen para ver el video en YouTube</p>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Cómo recogemos las voces</div>
+    <h2>Técnicas de recolección</h2>
+    <div class="cards two">
+      <div class="card">
+        <h3>Entrevista a profundidad</h3>
+        <p>Una conversación abierta y flexible que permite conocer en detalle las experiencias, emociones y significados de cada estudiante que abandonó en el primer semestre.</p>
+      </div>
+      <div class="card">
+        <h3>Grupo focal</h3>
+        <p>Un encuentro donde varios estudiantes conversan y comparten sus vivencias, haciendo emerger puntos en común y miradas distintas sobre el fenómeno.</p>
+      </div>
+    </div>
+    <a class="video-embed" href="https://youtu.be/KNKrji6qgXE" target="_blank" rel="noopener" title="Ver en YouTube: video sobre las técnicas de recolección">
+      <img src="https://img.youtube.com/vi/KNKrji6qgXE/hqdefault.jpg" onerror="this.onerror=null;this.style.display='none'" alt="Miniatura del video sobre las técnicas de recolección de información">
+      <span class="play" aria-hidden="true"></span>
+      <span class="vlabel">Video sobre las técnicas de recolección<span class="yt">YouTube</span></span>
+    </a>
+    <p class="video-cap">Hacé clic en la imagen para ver el video en YouTube</p>
+  </div>
+</section>
+
+<section class="sand reveal">
+  <div class="wrap">
+    <div class="eyebrow">Cómo damos sentido</div>
+    <h2>Categorías de análisis</h2>
+    <div class="cards three">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>Situaciones contextuales que influyen en la decisión</h3>
+        <div class="chips"><span class="chip">Factores personales</span><span class="chip">Factores familiares</span><span class="chip">Factores económicos</span><span class="chip">Complicaciones académicas</span></div>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>Experiencias vividas en la deserción</h3>
+        <div class="chips"><span class="chip">Factor emocional</span><span class="chip">Factor adaptativo</span><span class="chip">Expectativas perceptivas</span><span class="chip">Reorientación profesional</span></div>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>Motivaciones y significados</h3>
+        <div class="chips"><span class="chip">Motivaciones personales</span><span class="chip">Significado de la deserción</span><span class="chip">Proyecto de vida</span><span class="chip">Reorientación vocacional</span><span class="chip">Aprendizajes derivados</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Quiénes somos</div>
+    <h2>El equipo</h2>
+    <div class="team">
+      <div class="member"><div class="avatar">SA</div><div><div class="nm">Sergio Alzate Correa</div><div class="pg">Diseño Gráfico</div></div></div>
+      <div class="member"><div class="avatar">MM</div><div><div class="nm">Maria Kamila Mena Rojas</div><div class="pg">Ingeniería de Sistemas</div></div></div>
+      <div class="member"><div class="avatar">AM</div><div><div class="nm">Ana Alejandra Murillo Pacheco</div><div class="pg">Arquitectura</div></div></div>
+      <div class="member"><div class="avatar">DR</div><div><div class="nm">Diego Andrés Robles Bertel</div><div class="pg">Ingeniería de Sistemas</div></div></div>
+      <div class="member"><div class="avatar">TD</div><div><div class="nm">Tatiana Andrea Diez Urrego</div><div class="pg">Publicidad</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ftitle">La deserción no solo se cuenta: también se comprende.</div>
+    <div class="meta">
+      <strong>AFIV06 · Generalidades Metodológicas desde la Investigación Cualitativa</strong><br>
+      Docente: Jenny Marcela Acevedo Valencia<br>
+      Universidad Católica Luis Amigó — Medellín, 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
